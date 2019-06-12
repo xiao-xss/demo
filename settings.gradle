@@ -1,4 +1,5 @@
 rootProject.name = 'demo_java'
 
 include 'ADT'
+include 'daemon'
 

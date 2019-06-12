@@ -1,0 +1,10 @@
+version '1.0'
+
+dependencies {
+    
+}
+
+task zip(type: Zip, dependsOn: ':daemon:jar') {
+    from('build/libs/', 'script/')
+    destinationDir file('.')
+}
