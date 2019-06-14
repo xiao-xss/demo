@@ -14,8 +14,29 @@ public class SortArray {
      * @param end 结束位置，~len-1
      * @param <T> 数组元素类型
      */
-    public static <T extends Comparable<? super T>> void redixSort(T[] arr, int from, int end) {
-
+    public static <T extends Comparable<? super T>> void redixSort(T[] arr, int from, int end, int digits) {
+//        if(!needSort(arr, from, end)) return;
+//        Bag<T>[] bucket = new ArrayBag[10];
+//        for(int i = 0; i < 10; i++) bucket[i] = new ArrayBag<>();
+//        for(int i = 1; i <= digits; i++) {
+//            for(int idx = from; idx <= end; idx++) {
+//                String temp = arr[idx].toString();
+//                if(temp.length() < i) {
+//                    bucket[0].add(arr[idx]);
+//                } else {
+//                    int x = Integer.valueOf(temp.substring(temp.length() - i, temp.length() - i + 1));
+//                    bucket[x].add(arr[idx]);
+//                }
+//            }
+//            int k = from;
+//            for(int m = 0; m < 10; m++) {
+//                if(bucket[m].getSize() > 0) {
+//                    for(int j = 0; j < bucket[m].getSize(); j++) {
+//                        arr[k++] = bucket[m].remove();
+//                    }
+//                }
+//            }
+//        }
     }
     /**
      * 快速排序
@@ -25,7 +46,36 @@ public class SortArray {
      * @param <T> 数组元素类型
      */
     public static <T extends Comparable<? super T>> void quickSort(T[] arr, int from, int end) {
-
+        if(!needSort(arr, from, end)) return;
+        if(end - from + 1 < 3) {
+            insertionSort(arr, from, end);
+        } else {
+            int mid = (from + end) / 2;
+            sortFML(arr, from, mid, end);
+            swap(arr, mid, end - 1);
+            int x = from + 1, y = end - 2;
+            while(x <= y) {
+                while(arr[x].compareTo(arr[end - 1]) < 0) x++;
+                while(arr[y].compareTo(arr[end - 1]) > 0) y--;
+                if(x < y) {
+                    swap(arr, x, y);
+                    x++;
+                    y--;
+                } else {
+                    break;
+                }
+            }
+            swap(arr, x, end - 1);
+            quickSort(arr, from, x - 1);
+            quickSort(arr, x + 1, end);
+        }
+    }
+    private static <T extends Comparable<? super T>> void sortFML(T[] arr, int first, int mid, int last) {
+        T[] temp = (T[]) new Comparable<?>[]{arr[first], arr[mid], arr[last]};
+        insertionSort(temp, 0, 2);
+        arr[first] = temp[0];
+        arr[mid] = temp[1];
+        arr[last] = temp[2];
     }
     /**
      * 归并排序
@@ -35,7 +85,37 @@ public class SortArray {
      * @param <T> 数组元素类型
      */
     public static <T extends Comparable<? super T>> void mergeSort(T[] arr, int from, int end) {
-
+        if(!needSort(arr, from, end)) return;
+        T[] temp = (T[]) new Comparable<?>[arr.length];
+        mergeSort(arr, from, end, temp);
+    }
+    private static <T extends Comparable<? super T>> void mergeSort(T[] arr, int from, int end, T[] temp) {
+        int mid = (from + end) / 2;
+        if(from < end) {
+            mergeSort(arr, from, mid, temp);
+            mergeSort(arr, mid + 1, end, temp);
+            int idx = from;
+            int s1 = from, s2 = mid + 1;
+            while(s1 <= mid && s2 <= end) {
+                if(arr[s1].compareTo(arr[s2]) <= 0) {
+                    temp[idx] = arr[s1++];
+                } else {
+                    temp[idx] = arr[s2++];
+                }
+                idx++;
+            }
+            while(s1 <= mid) {
+                temp[idx++] = arr[s1++];
+            }
+            while(s2 <= end) {
+                temp[idx++] = arr[s2++];
+            }
+            idx = from;
+            while(idx <= end) {
+                arr[idx] = temp[idx];
+                idx++;
+            }
+        }
     }
     /**
      * 冒泡排序
@@ -70,7 +150,7 @@ public class SortArray {
         int step = (from + end + 1) / 2;
         while(step > 0) {
             for(int x = from; x < from + step; x++) {
-                for(int y = x; y < end && y + step <= end; y += step) {
+                for(int y = x; y + step <= end; y += step) {
                     T e = arr[y + step];
                     int z = y;
                     while(z >= from && arr[z].compareTo(e) > 0) {

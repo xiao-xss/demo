@@ -51,6 +51,14 @@ public class SortAll {
     public void bubbleSort() {
         SortArray.bubbleSort(arr, from, end);
     }
+    @Test
+    public void mergeSort() {
+        SortArray.mergeSort(arr, from, end);
+    }
+    @Test
+    public void quickSort() {
+        SortArray.quickSort(arr, from, end);
+    }
 
     private void assertEquals(Integer[] except, Integer[] result, int from, int end) {
         while(from++ <= end) {
