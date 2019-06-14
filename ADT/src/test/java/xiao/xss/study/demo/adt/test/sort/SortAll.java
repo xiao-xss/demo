@@ -37,15 +37,15 @@ public class SortAll {
 
     @Test
     public void selectionSort() {
-        SortArray.bubbleSort(arr, from, end);
+        SortArray.selectionSort(arr, from, end);
     }
     @Test
     public void insertionSort() {
-        SortArray.bubbleSort(arr, from, end);
+        SortArray.insertionSort(arr, from, end);
     }
     @Test
     public void shellSort() {
-        SortArray.bubbleSort(arr, from, end);
+        SortArray.shellSort(arr, from, end);
     }
     @Test
     public void bubbleSort() {
