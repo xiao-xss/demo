@@ -1,4 +1,4 @@
-package xiao.xss.study.demo.adt.test.queue;
+package xiao.xss.study.demo.adt.queue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -7,9 +7,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import xiao.xss.study.demo.adt.queue.EmptyQueueException;
-import xiao.xss.study.demo.adt.queue.LinkedQueue;
-import xiao.xss.study.demo.adt.queue.Queue;
 
 /**
  * 队列测试
@@ -18,14 +15,14 @@ import xiao.xss.study.demo.adt.queue.Queue;
  * @since 2019-06-17 11:30
  */
 @RunWith(JUnit4.class)
-public class LinkedQueueTest {
+public class ArrayQueueTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     private Queue<Integer> queue;
 
     @Before
     public void before() {
-        queue = new LinkedQueue<>();
+        queue = new ArrayQueue<>(6);
     }
     @After
     public void after() {
@@ -127,6 +124,14 @@ public class LinkedQueueTest {
         queue.add(5);
         queue.add(6);
         queue.add(7);
+        queue.add(8);
+        queue.remove();
+        queue.remove();
+        queue.remove();
+        queue.remove();
+        queue.remove();
+        queue.remove();
+        queue.remove();
         assert true;
     }
 

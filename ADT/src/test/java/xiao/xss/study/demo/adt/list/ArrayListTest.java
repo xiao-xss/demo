@@ -1,4 +1,4 @@
-package xiao.xss.study.demo.adt.test.list;
+package xiao.xss.study.demo.adt.list;
 
 import org.junit.After;
 import org.junit.Before;
@@ -7,8 +7,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import xiao.xss.study.demo.adt.list.ArrayList;
-import xiao.xss.study.demo.adt.list.List;
 
 /**
  * 线性表测试

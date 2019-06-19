@@ -1,29 +1,27 @@
-package xiao.xss.study.demo.adt.test.stack;
+package xiao.xss.study.demo.adt.stack;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import xiao.xss.study.demo.adt.stack.ArrayStack;
-import xiao.xss.study.demo.adt.stack.Stack;
 
 import java.util.EmptyStackException;
 
 /**
- * 测试使用数组实现栈
+ * 测试使用链表实现栈
  *
  * @author xiaoliang
- * @since 2019-06-10 16:50
+ * @since 2019-06-10 16:11
  */
-public class ArrayStackTest {
+public class LinkedStackTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     private Stack<Integer> stack;
 
     @Before
     public void before() {
-        stack = new ArrayStack<>(16);
+        stack = new LinkedStack<>();
     }
     @After
     public void after(){

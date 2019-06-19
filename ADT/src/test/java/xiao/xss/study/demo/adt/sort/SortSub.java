@@ -1,4 +1,4 @@
-package xiao.xss.study.demo.adt.test.sort;
+package xiao.xss.study.demo.adt.sort;
 
 import org.junit.After;
 import org.junit.Before;
@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import xiao.xss.study.demo.adt.sort.SortArray;
 
 import java.util.Arrays;
 
@@ -18,13 +17,13 @@ import java.util.Arrays;
  * @since 2019-06-13 15:58
  */
 @RunWith(JUnit4.class)
-public class SortAll {
+public class SortSub {
     @Rule
     public TestName method = new TestName();
-    private final Integer[] except = new Integer[] {1, 2, 3, 4, 4, 6, 7, 9, 10, 13, 15, 17, 19, 21, 23};
+    private final Integer[] except = new Integer[] {9, 3, 6, 1, 2, 4, 4, 7, 17, 19, 23, 13, 15, 21, 10};
     private Integer[] arr;
-    private final int from = 0;
-    private final int end = 14;
+    private final int from = 3;
+    private final int end = 10;
 
     @Before
     public void before() {

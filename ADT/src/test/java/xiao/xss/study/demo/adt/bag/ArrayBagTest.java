@@ -1,10 +1,8 @@
-package xiao.xss.study.demo.adt.test.bag;
+package xiao.xss.study.demo.adt.bag;
 
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import xiao.xss.study.demo.adt.bag.ArrayBag;
-import xiao.xss.study.demo.adt.bag.Bag;
 
 /**
  * ArrayBagTest

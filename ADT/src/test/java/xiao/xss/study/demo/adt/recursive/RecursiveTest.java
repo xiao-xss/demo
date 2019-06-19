@@ -1,11 +1,10 @@
-package xiao.xss.study.demo.adt.test.recursive;
+package xiao.xss.study.demo.adt.recursive;
 
 import org.junit.*;
 import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.junit.runners.MethodSorters;
-import xiao.xss.study.demo.adt.recursive.Recursive;
 
 import java.util.HashMap;
 import java.util.Map;

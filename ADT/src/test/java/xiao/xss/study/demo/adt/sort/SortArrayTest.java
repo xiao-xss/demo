@@ -1,4 +1,4 @@
-package xiao.xss.study.demo.adt.test.sort;
+package xiao.xss.study.demo.adt.sort;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

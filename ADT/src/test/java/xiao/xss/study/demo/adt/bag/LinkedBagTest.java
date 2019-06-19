@@ -1,10 +1,8 @@
-package xiao.xss.study.demo.adt.test.bag;
+package xiao.xss.study.demo.adt.bag;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import xiao.xss.study.demo.adt.bag.Bag;
-import xiao.xss.study.demo.adt.bag.LinkedBag;
 
 /**
  * LinkedBagTest

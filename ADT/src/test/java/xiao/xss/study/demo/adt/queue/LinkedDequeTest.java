@@ -1,4 +1,4 @@
-package xiao.xss.study.demo.adt.test.queue;
+package xiao.xss.study.demo.adt.queue;
 
 import org.junit.After;
 import org.junit.Before;
@@ -7,9 +7,6 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import xiao.xss.study.demo.adt.queue.ArrayDeque;
-import xiao.xss.study.demo.adt.queue.Deque;
-import xiao.xss.study.demo.adt.queue.EmptyQueueException;
 
 /**
  * 双端队列测试
@@ -18,13 +15,13 @@ import xiao.xss.study.demo.adt.queue.EmptyQueueException;
  * @since 2019-06-17 15:36
  */
 @RunWith(JUnit4.class)
-public class ArrayDequeTest {
+public class LinkedDequeTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
     private Deque<Integer> deque;
     @Before
     public void before() {
-        deque = new ArrayDeque<>(6);
+        deque = new LinkedDeque<>();
     }
     @After
     public void after() {
