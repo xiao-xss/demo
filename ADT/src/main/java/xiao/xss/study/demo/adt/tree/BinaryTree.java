@@ -1,5 +1,7 @@
 package xiao.xss.study.demo.adt.tree;
 
+import xiao.xss.study.demo.adt.list.List;
+
 /**
  * 二叉树
  *
@@ -20,4 +22,28 @@ public interface BinaryTree<T> extends Tree<T>, TreeIterator<T> {
      * @param right 右子树
      */
     public void setTree(T root, BinaryTree<T> left, BinaryTree<T> right);
+
+    /**
+     * 前序遍历树
+     * @return 结果
+     */
+    public List<T> prevOrderList();
+
+    /**
+     * 中序遍历树
+     * @return 结果
+     */
+    public List<T> midOrderList();
+
+    /**
+     * 后序遍历树
+     * @return 结果
+     */
+    public List<T> backOrderList();
+
+    /**
+     * 层序遍历树
+     * @return 结果
+     */
+    public List<T> levelOrderList();
 }

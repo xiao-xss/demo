@@ -1,5 +1,9 @@
 package xiao.xss.study.demo.adt.tree;
 
+import xiao.xss.study.demo.adt.list.LinkedList;
+import xiao.xss.study.demo.adt.list.List;
+import xiao.xss.study.demo.adt.queue.LinkedQueue;
+import xiao.xss.study.demo.adt.queue.Queue;
 import xiao.xss.study.demo.adt.stack.LinkedStack;
 import xiao.xss.study.demo.adt.stack.Stack;
 
@@ -91,6 +95,71 @@ public class LinkedBinaryTree<T> implements BinaryTree<T> {
     @Override
     public void clear() {
         rootNode = null;
+    }
+
+    @Override
+    public List<T> prevOrderList() {
+        List<T> list = new LinkedList<>();
+        prevOrderTraversal(rootNode, list);
+        return list;
+    }
+    private void prevOrderTraversal(BinaryNode<T> node, List<T> list) {
+        if(node != null) {
+            list.add(node.getData());
+            prevOrderTraversal(node.getLeft(), list);
+            prevOrderTraversal(node.getRight(), list);
+        }
+    }
+
+    @Override
+    public List<T> midOrderList() {
+        List<T> list = new LinkedList<>();
+        midOrderTraversal(rootNode, list);
+        return list;
+    }
+    private void midOrderTraversal(BinaryNode<T> node, List<T> list) {
+        if(node != null) {
+            midOrderTraversal(node.getLeft(), list);
+            list.add(node.getData());
+            midOrderTraversal(node.getRight(), list);
+        }
+    }
+
+    @Override
+    public List<T> backOrderList() {
+        List<T> list = new LinkedList<>();
+        backOrderTraversal(rootNode, list);
+        return list;
+    }
+    private void backOrderTraversal(BinaryNode<T> node, List<T> list) {
+        if(node != null) {
+            backOrderTraversal(node.getLeft(), list);
+            backOrderTraversal(node.getRight(), list);
+            list.add(node.getData());
+        }
+    }
+
+    @Override
+    public List<T> levelOrderList() {
+        List<T> list = new LinkedList<>();
+        levelOrderTraversal(rootNode, list);
+        return list;
+    }
+    private void levelOrderTraversal(BinaryNode<T> node, List<T> list) {
+        if(node != null) {
+            Queue<BinaryNode<T>> queue = new LinkedQueue<>();
+            queue.add(node);
+            BinaryNode<T> temp;
+            while(!queue.isEmpty() && (temp = queue.remove()) != null) {
+                list.add(temp.getData());
+                if(temp.getLeft() != null) {
+                    queue.add(temp.getLeft());
+                }
+                if(temp.getRight() != null) {
+                    queue.add(temp.getRight());
+                }
+            }
+        }
     }
 
     @Override

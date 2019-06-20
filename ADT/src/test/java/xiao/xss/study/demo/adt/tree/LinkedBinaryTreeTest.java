@@ -3,6 +3,7 @@ package xiao.xss.study.demo.adt.tree;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import xiao.xss.study.demo.adt.list.List;
 
 import java.util.Iterator;
 
@@ -38,6 +39,34 @@ public class LinkedBinaryTreeTest {
         tree.clear();
     }
 
+    @Test
+    public void test_prevOrderList() {
+        String expect = "ABCDEFGHIJK";
+        List<String> list = tree.prevOrderList();
+        String result = toString(list);
+        assert expect.equals(result) : String.format("前序遍历失败：\n期望：%s\n实际：%s", expect, result);
+    }
+    @Test
+    public void test_midOrderList() {
+        String expect = "DCEBFAHGJIK";
+        List<String> list = tree.midOrderList();
+        String result = toString(list);
+        assert expect.equals(result) : String.format("中序遍历失败：\n期望：%s\n实际：%s", expect, result);
+    }
+    @Test
+    public void test_backOrderList() {
+        String expect = "DECFBHJKIGA";
+        List<String> list = tree.backOrderList();
+        String result = toString(list);
+        assert expect.equals(result) : String.format("后序遍历失败：\n期望：%s\n实际：%s", expect, result);
+    }
+    @Test
+    public void test_levelOrderList() {
+        String expect = "ABGCFHIDEJK";
+        List<String> list = tree.levelOrderList();
+        String result = toString(list);
+        assert expect.equals(result) : String.format("层序遍历失败：\n期望：%s\n实际：%s", expect, result);
+    }
     @Test
     public void test_prevOrderIterator() {
         String expect = "ABCDEFGHIJK";
@@ -104,5 +133,13 @@ public class LinkedBinaryTreeTest {
         C.clear();
         assert C.isEmpty(): "测试clear失败";
         assert C.getHeight() == 0: "测试clear失败";
+    }
+
+    private String toString(List list) {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < list.size(); i++) {
+            sb.append(list.get(i));
+        }
+        return sb.toString();
     }
 }
