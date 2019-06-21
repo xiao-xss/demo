@@ -118,7 +118,7 @@ public class LBTreeIteratorTest3 {
         while(ite.hasNext()) {
             sb.append(ite.next());
         }
-        assert expect.equals(sb.toString()) : String.format("后序遍历失败：\n期望：%s\n实际：%s", expect, sb.toString());
+        assert expect.equals(sb.toString()) : String.format("层序遍历失败：\n期望：%s\n实际：%s", expect, sb.toString());
     }
 
     private String toString(List list) {
