@@ -181,6 +181,7 @@ public class LinkedBinaryTree<T> implements BinaryTree<T> {
     public Iterator<T> levelOrderIterator() {
         return new LevelOrderIterator();
     }
+
     private class PrevOrderIterator implements Iterator<T> {
         private Stack<BinaryNode<T>> stack;
         private BinaryNode<T> current;
@@ -204,7 +205,7 @@ public class LinkedBinaryTree<T> implements BinaryTree<T> {
             if(!stack.isEmpty()) {
                 next = stack.pop();
                 assert next != null;
-                if(next.getRight() != null) {
+                if(next.hasRight()) {
                     stack.push(next.getRight());
                 }
                 current = next.getLeft();
@@ -248,10 +249,15 @@ public class LinkedBinaryTree<T> implements BinaryTree<T> {
     private class BackOrderIterator implements Iterator<T> {
         private Stack<BinaryNode<T>> stack;
         private BinaryNode<T> current;
+        private BinaryNode<T> last;
 
         BackOrderIterator() {
             stack = new LinkedStack<>();
             current = rootNode;
+            last = null;
+            if(rootNode != null) {
+                stack.push(rootNode);
+            }
         }
 
         @Override
@@ -261,28 +267,69 @@ public class LinkedBinaryTree<T> implements BinaryTree<T> {
 
         @Override
         public T next() {
-            // TODO
-            return null;
+            BinaryNode<T> next;
+            while(current != null) {
+                if(current.hasRight()) {
+                    stack.push(current.getRight());
+                }
+                if(current.hasLeft()) {
+                    stack.push(current.getLeft());
+                }
+                current = current.getLeft();
+            }
+            if(!stack.isEmpty()) {
+                next = stack.pop();
+                assert next != null;
+                if(!next.isLeaf()) {
+                    if(!stack.isEmpty()) {
+                        BinaryNode<T> parent = stack.peek();
+                        assert parent != null;
+                        if((parent.isMyChild(last) || last == null) && parent.hasRight() && parent.getRight().equals(next)) {
+                            last = null;
+                            stack.push(next);
+                            current = next;
+                            return next();
+                        }
+                    }
+                }
+                last = next;
+            } else {
+                throw new NoSuchElementException();
+            }
+            return next.getData();
         }
     }
     private class LevelOrderIterator implements Iterator<T> {
-        private Stack<BinaryNode<T>> stack;
-        private BinaryNode<T> current;
+        private Queue<BinaryNode<T>> queue;
 
         LevelOrderIterator() {
-            stack = new LinkedStack<>();
-            current = rootNode;
+            queue = new LinkedQueue<>();
+            if(rootNode != null) {
+                queue.add(rootNode);
+            }
         }
 
         @Override
         public boolean hasNext() {
-            return !stack.isEmpty() || current != null;
+            return !queue.isEmpty();
         }
 
         @Override
         public T next() {
-            // TODO
-            return null;
+            BinaryNode<T> next;
+            if(!queue.isEmpty()) {
+                next = queue.remove();
+                assert next != null;
+                if(next.hasLeft()) {
+                    queue.add(next.getLeft());
+                }
+                if(next.hasRight()) {
+                    queue.add(next.getRight());
+                }
+            } else {
+                throw new NoSuchElementException();
+            }
+            return next.getData();
         }
     }
 }

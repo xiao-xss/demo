@@ -56,6 +56,10 @@ class BinaryNode<T> {
         return left == null && right == null;
     }
 
+    boolean isMyChild(BinaryNode<T> child) {
+        return (hasLeft() && getLeft().equals(child)) || (hasRight() && getRight().equals(child));
+    }
+
     int countNodes() {
         int l = 0, r = 0;
         if(left != null) l = left.countNodes();
@@ -79,5 +83,9 @@ class BinaryNode<T> {
         if(left != null) node.setLeft(left.copy());
         if(right != null) node.setRight(right.copy());
         return node;
+    }
+
+    public String toString() {
+        return String.valueOf(getData());
     }
 }
