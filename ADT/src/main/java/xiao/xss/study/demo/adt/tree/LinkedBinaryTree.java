@@ -61,6 +61,13 @@ public class LinkedBinaryTree<T> implements BinaryTree<T> {
         }
     }
 
+    protected void setRootNode(BinaryNode<T> rootNode) {
+        this.rootNode = rootNode;
+    }
+    protected BinaryNode<T> getRootNode() {
+        return rootNode;
+    }
+
     @Override
     public T getRoot() {
         if(isEmpty()) {
