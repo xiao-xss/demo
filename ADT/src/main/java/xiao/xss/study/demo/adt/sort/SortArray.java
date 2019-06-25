@@ -1,5 +1,8 @@
 package xiao.xss.study.demo.adt.sort;
 
+import xiao.xss.study.demo.adt.queue.ArrayQueue;
+import xiao.xss.study.demo.adt.queue.Queue;
+
 /**
  * 数组排序
  *
@@ -14,29 +17,30 @@ public class SortArray {
      * @param end 结束位置，~len-1
      * @param <T> 数组元素类型
      */
-    public static <T extends Comparable<? super T>> void redixSort(T[] arr, int from, int end, int digits) {
-//        if(!needSort(arr, from, end)) return;
-//        Bag<T>[] bucket = new ArrayBag[10];
-//        for(int i = 0; i < 10; i++) bucket[i] = new ArrayBag<>();
-//        for(int i = 1; i <= digits; i++) {
-//            for(int idx = from; idx <= end; idx++) {
-//                String temp = arr[idx].toString();
-//                if(temp.length() < i) {
-//                    bucket[0].add(arr[idx]);
-//                } else {
-//                    int x = Integer.valueOf(temp.substring(temp.length() - i, temp.length() - i + 1));
-//                    bucket[x].add(arr[idx]);
-//                }
-//            }
-//            int k = from;
-//            for(int m = 0; m < 10; m++) {
-//                if(bucket[m].getSize() > 0) {
-//                    for(int j = 0; j < bucket[m].getSize(); j++) {
-//                        arr[k++] = bucket[m].remove();
-//                    }
-//                }
-//            }
-//        }
+    public static <T extends Comparable<? super T>> void redixSort(Integer[] arr, int from, int end, int digits) {
+        if(!needSort(arr, from, end)) return;
+        Queue<Integer>[] bucket = new ArrayQueue[10];
+        for(int i = 0; i < 10; i++) bucket[i] = new ArrayQueue<>(5);
+        for(int i = 1; i <= digits; i++) {
+            for(int idx = from; idx <= end; idx++) {
+                String temp = arr[idx].toString();
+                if(temp.length() < i) {
+                    bucket[0].add(arr[idx]);
+                } else {
+                    int x = Integer.valueOf(temp.substring(temp.length() - i, temp.length() - i + 1));
+                    bucket[x].add(arr[idx]);
+                }
+            }
+            int k = from;
+            for(int m = 0; m < 10; m++) {
+                if(bucket[m].size() > 0) {
+                    int size = bucket[m].size();
+                    for(int j = 0; j < size; j++) {
+                        arr[k++] = bucket[m].remove();
+                    }
+                }
+            }
+        }
     }
     /**
      * 快速排序

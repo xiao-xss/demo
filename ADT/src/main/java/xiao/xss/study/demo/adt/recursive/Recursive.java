@@ -19,7 +19,7 @@ public class Recursive {
         if(n < 2) {
             result = 1;
         } else {
-            result = fibo1(n - 1) + fibo1(n - 2);
+            result = fibo(n - 2, map) + fibo(n - 1, map);
         }
         map.put(n, result);
         return result;

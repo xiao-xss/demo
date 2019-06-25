@@ -9,6 +9,6 @@ import org.junit.runners.Suite;
  * @since 2019-06-13 15:57
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses(value = {SortAll.class, SortSub.class})
+@Suite.SuiteClasses(value = {SortAll.class, SortSub.class, RedixSort.class})
 public class SortArrayTest {
 }
